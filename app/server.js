@@ -1,20 +1,20 @@
 "use strict";
-/*var DBConfig = {
-  name: 'senecatest',
-  host: 'localhost',
-  username: 'mani',//postgres
-  password: '123',
-  port: 5432
-}*/
+
 var seneca = require('seneca')()
 	.use('evaluator-service')
 	.use('entity')
-	.use('pg')
-	.use('jsonfile-store', {
-		folder: './data'
-	});
+	//.use('jsonfile-store', {
+	//	folder: './data'
+	//})
+	.use('seneca-postgres-store', {
+  name: 'SmartRecruit',
+  host: 'localhost',
+  username: 'postgres',
+  password: '123',
+  port: 5432
+});
 
-var port = 3000;
+var port = 3007;
 var app = require('express')()
 
 app.use(function(req, res, next) {
