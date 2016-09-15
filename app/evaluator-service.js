@@ -24,7 +24,6 @@ getuser = Object.assign(getuser, args.req$.body);
 var username = args.req$.body.username
 var pwd = args.req$.body.password
 getuser.list$( {username:username,pwd:pwd}, function(err,list){
-	console.log(list);
 	 if(err) return callback(err);
   list.forEach(function( getuser ){
 	  callback(null, getuser)
