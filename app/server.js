@@ -14,7 +14,7 @@ var seneca = require('seneca')()
   port: 5432
 });
 
-var port = 3007;
+var port = 3000;
 var app = require('express')()
 
 app.use(function(req, res, next) {
