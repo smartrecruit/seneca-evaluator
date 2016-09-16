@@ -1,5 +1,7 @@
 evaluator Microservice
 ======================
+## Create postgres database "SmartRecruit"
+execute the psql script "/data/database/sqlscript.sql"
 
 ## Build/Run Instructions
 

@@ -33,7 +33,7 @@ getuser.list$( {emailid:emailid,pwd:pwd}, function(err,list){
 });
 //////////////////////// End Login ////////////////////////////
 
-                ////////// Profile Creation /////////////
+                ////////// Insert Profile Creation /////////////
 //////////////////////// Create Contact  Info ////////////////////////////
 this.add('role: evaluators, cmd: contactinfo', (args, callback) => {
 var seneca = this;
@@ -118,7 +118,42 @@ resum.save$(function(err, resum) {
 	});
 //////////////////////// Create Resume Upload  ////////////////////////////
 
-            ////////// Profile Creation /////////////
+            ////////// End Insert Profile Creation /////////////
+
+            ////////// Read Profile Creation /////////////
+//////////////////////// Read Contact  Info   ////////////////////////////////////////
+this.add('role: evaluators, cmd: getcontactinfo' , (args, callback) => {
+var seneca = this;
+var getcontact = seneca.make$('usercontactinfo')
+getcontact = Object.assign(getcontact, args.req$.body);
+var emailid = args.req$.body.emailid
+getcontact.list$( {emailid:emailid}, function(err,list){
+	 if(err) return callback(err);
+  list.forEach(function( getcontact ){
+	  callback(null, getcontact)
+  })
+})
+
+});
+//////////////////////// End Contact  Info  ////////////////////////////
+
+//////////////////////// Read Contact  Info   ////////////////////////////////////////
+this.add('role: evaluators, cmd: getsummaryinfo' , (args, callback) => {
+var seneca = this;
+var getsummary = seneca.make$('usersummaryinfo')
+getsummary = Object.assign(getsummary, args.req$.body);
+var emailid = args.req$.body.emailid
+getsummary.list$( {emailid:emailid}, function(err,list){
+	 if(err) return callback(err);
+  list.forEach(function( getsummary ){
+	  callback(null, getsummary)
+  })
+})
+
+});
+//////////////////////// End Contact  Info  ////////////////////////////
+            ////////// End Read Profile Creation /////////////
+
 	this.act('role: web', {
 		use: {
 			prefix: '',
@@ -132,7 +167,9 @@ resum.save$(function(err, resum) {
 			profileexperience: { POST: true, alias: '/evaluators/profileexperience' },
 			profileeducation: { POST: true, alias: '/evaluators/profileeducation' },
 			profilecertifications: { POST: true, alias: '/evaluators/profilecertifications' },
-			resumeupload: { POST: true, alias: '/evaluators/resumeupload' }
+			resumeupload: { POST: true, alias: '/evaluators/resumeupload' },
+			getcontactinfo: { POST: true, alias: '/evaluators/getcontactinfo' },
+			getsummaryinfo: { POST: true, alias: '/evaluators/getsummaryinfo' }
 			}
 		}
 	});
