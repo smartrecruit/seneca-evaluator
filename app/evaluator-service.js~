@@ -135,9 +135,9 @@ getcontact.list$( {emailid:emailid}, function(err,list){
 })
 
 });
-//////////////////////// End Read Contact  Info  ////////////////////////////
+//////////////////////// End Contact  Info  ////////////////////////////
 
-//////////////////////// Read Summary Info   ////////////////////////////////////////
+//////////////////////// Read Contact  Info   ////////////////////////////////////////
 this.add('role: evaluators, cmd: getsummaryinfo' , (args, callback) => {
 var seneca = this;
 var getsummary = seneca.make$('usersummaryinfo')
@@ -151,103 +151,7 @@ getsummary.list$( {emailid:emailid}, function(err,list){
 })
 
 });
-//////////////////////// End Read Summary  Info  ////////////////////////////
-
-
-//////////////////////// Read Key Specilization ////////////////////////////
-
-this.add('role: evaluators, cmd: getkeyskills' , (args, callback) => {
-var seneca = this;
-var getkeyskils = seneca.make$('userkeyskils')
-getkeyskils = Object.assign(getkeyskils, args.req$.body);
-var emailid = args.req$.body.emailid
-getkeyskils.list$( {emailid:emailid}, function(err,list){
-	 if(err) return callback(err);
-  list.forEach(function( getkeyskils ){
-	  callback(null, getkeyskils)
-  })
-})
-
-});
-
-//////////////////////// End Read Key Specilization ////////////////////////////
-
-//////////////////////// Read Profile experience ////////////////////////////
-
-this.add('role: evaluators, cmd: getexperience' , (args, callback) => {
-var seneca = this;
-var getexperience = seneca.make$('userexperience')
-getexperience = Object.assign(getkeyskils, args.req$.body);
-var emailid = args.req$.body.emailid
-getexperience.list$( {emailid:emailid}, function(err,list){
-	 if(err) return callback(err);
-  list.forEach(function( getexperience ){
-	  callback(null, getexperience)
-  })
-})
-
-});
-
-//////////////////////// End Read Profile experience ////////////////////////////
-
-//////////////////////// Read Profile Education ////////////////////////////
-
-this.add('role: evaluators, cmd: geteducation' , (args, callback) => {
-var seneca = this;
-var geteducation = seneca.make$('usereducation')
-geteducation = Object.assign(getkeyskils, args.req$.body);
-var emailid = args.req$.body.emailid
-geteducation.list$( {emailid:emailid}, function(err,list){
-	 if(err) return callback(err);
-  list.forEach(function( geteducation ){
-	  callback(null, geteducation)
-  })
-})
-
-});
-//////////////////////// End Read Profile Education ////////////////////////////
-
-//////////////////////// Read Profile certifications ////////////////////////////
-this.add('role: evaluators, cmd: profilecertifications', (args, callback) => {
-var seneca = this;
-var certificate = seneca.make$('usercertifications')
-certificate = Object.assign(certificate, args.req$.body);
-certificate.save$(function(err, certificate) {
-				 if(err) return callback(err);
-				callback(null, certificate)
-			})
-	});
-
-this.add('role: evaluators, cmd: getcertificate' , (args, callback) => {
-var seneca = this;
-var getcertificate = seneca.make$('usercertifications')
-getcertificate = Object.assign(getkeyskils, args.req$.body);
-var emailid = args.req$.body.emailid
-getcertificate.list$( {emailid:emailid}, function(err,list){
-	 if(err) return callback(err);
-  list.forEach(function( getcertificate ){
-	  callback(null, getcertificate)
-  })
-})
-
-});
-
-//////////////////////// Create Profile certifications ////////////////////////////
-
-//////////////////////// Create Resume Upload ////////////////////////////
-this.add('role: evaluators, cmd: resumeupload', (args, callback) => {
-var seneca = this;
-var resum = seneca.make$('userresume')
-resum = Object.assign(resum, args.req$.body);
-resum.save$(function(err, resum) {
-				 if(err) return callback(err);
-				callback(null, resum)
-			})
-	});
-//////////////////////// Create Resume Upload  ////////////////////////////
-
-
-
+//////////////////////// End Contact  Info  ////////////////////////////
             ////////// End Read Profile Creation /////////////
 
 	this.act('role: web', {

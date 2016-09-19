@@ -1,7 +1,6 @@
 Create Database SmartRecruit
 
 -- Table: registration
-
 -- DROP TABLE registration;
 
 CREATE TABLE registration
@@ -92,4 +91,26 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE userexperience
+  OWNER TO postgres;
+
+
+  -- Table: usereducation
+
+-- DROP TABLE usereducation;
+
+CREATE TABLE usereducation
+(
+  emailid character(50),
+  graduation text,
+  specialization text,
+  university text,
+  description text,
+  approved character(10),
+  id uuid,
+  studytime integer DEFAULT 0
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE usereducation
   OWNER TO postgres;
